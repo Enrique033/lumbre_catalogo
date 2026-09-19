@@ -1,0 +1,84 @@
+/* =========================================================
+   TOKENS DE DISEÑO
+   Fuente única de verdad del sistema visual LUMBRE.
+   Declarados en @theme para exponerlos como utilidades
+   de Tailwind Y como variables CSS en runtime.
+   ========================================================= */
+
+@theme {
+  /* -----------------------------------------------------
+     COLOR
+     Base cálida, marca verde profundo, acento latón.
+     ----------------------------------------------------- */
+  --color-bg: #faf7f2;
+  --color-surface: #ffffff;
+  --color-surface-2: #f2ede4;
+  --color-border: #e4dcd0;
+  --color-border-strong: #d6ccbc;
+
+  --color-ink: #1c1917;
+  --color-ink-2: #6b6259;
+  --color-ink-3: #938a7f;
+
+  --color-brand: #22302a;
+  --color-brand-hover: #2e4038;
+  --color-accent: #b4863c;
+  --color-accent-ink: #7a5320;
+  --color-accent-soft: #f3e7d3;
+
+  --color-danger: #9a3412;
+  --color-success: #3f6212;
+
+  /* -----------------------------------------------------
+     TIPOGRAFÍA
+     ----------------------------------------------------- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+
+  /* -----------------------------------------------------
+     RADIOS
+     Moderados. Los chips pueden ser píldora, los botones no.
+     ----------------------------------------------------- */
+  --radius-card: 14px;
+  --radius-btn: 10px;
+  --radius-modal: 18px;
+  --radius-chip: 999px;
+
+  /* -----------------------------------------------------
+     SOMBRAS
+     Muy suaves. Nunca duras.
+     ----------------------------------------------------- */
+  --shadow-base: 0 1px 2px rgba(28, 25, 23, 0.05);
+  --shadow-hover:
+    0 2px 4px rgba(28, 25, 23, 0.05),
+    0 18px 36px -18px rgba(28, 25, 23, 0.18);
+  --shadow-modal:
+    0 2px 8px rgba(28, 25, 23, 0.08),
+    0 36px 90px -28px rgba(28, 25, 23, 0.42);
+
+  /* -----------------------------------------------------
+     EASINGS
+     ----------------------------------------------------- */
+  --ease-quart: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------------------------------------------------------
+   VARIABLES FUERA DE @theme
+   No necesitan generar utilidades Tailwind, pero el CSS
+   propio las consume directamente.
+   --------------------------------------------------------- */
+:root {
+  --dur-micro: 150ms;
+  --dur-hover: 220ms;
+  --dur-layout: 320ms;
+
+  --container-w: 1200px;
+  --header-h: 56px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 60px;
+  }
+}

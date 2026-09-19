@@ -1,0 +1,46 @@
+/* =========================================================
+   LUMBRE · Estilos globales
+   Orquestador. Importa todo en el orden correcto:
+     1. Tailwind (utilidades + Preflight)
+     2. Fuentes (aplicación tipográfica)
+     3. Tokens (variables de diseño)
+     4. Utilidades propias
+   ========================================================= */
+
+@import 'tailwindcss';
+@import './fonts.css';
+@import './tokens.css';
+@import './utilities.css';
+
+/* ---------------------------------------------------------
+   BASE
+   Solo lo que Preflight de Tailwind no cubre de serie.
+   --------------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: var(--font-sans);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(180, 134, 60, 0.25);
+}

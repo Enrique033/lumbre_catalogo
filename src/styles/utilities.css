@@ -1,0 +1,218 @@
+/* =========================================================
+   UTILIDADES PROPIAS
+   Lo que Tailwind no cubre de serie.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CONTENEDOR
+   Ancho máximo 1240px con padding responsive.
+   --------------------------------------------------------- */
+.container-lumbre {
+  width: 100%;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding-inline: 18px;
+}
+
+@media (min-width: 640px) {
+  .container-lumbre {
+    padding-inline: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-lumbre {
+    padding-inline: 36px;
+  }
+}
+
+/* ---------------------------------------------------------
+   SKIP LINK
+   Accesible por teclado, invisible hasta focus.
+   --------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: 10px 14px;
+  background: var(--color-brand);
+  color: #faf7f2;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: var(--radius-btn);
+  transform: translateY(-200%);
+  transition: transform var(--dur-micro) var(--ease-quart);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   EYEBROW
+   Etiqueta contextual en mayúsculas con tracking amplio.
+   --------------------------------------------------------- */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-2);
+}
+
+/* ---------------------------------------------------------
+   HAIRLINE
+   Línea divisoria de 1px consistente.
+   --------------------------------------------------------- */
+.hairline {
+  height: 1px;
+  background: var(--color-border);
+  border: 0;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   MOTION
+   Respeta la preferencia del sistema.
+   --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------------------------------------------------------
+   KEYFRAMES para <dialog> nativo
+   --------------------------------------------------------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------
+   GLASS
+   Superficies translúcidas con blur para header y barra
+   de controles cuando quedan pegadas al scroll.
+   --------------------------------------------------------- */
+.glass {
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+}
+
+/* ---------------------------------------------------------
+   REVEAL
+   Entrada escalonada. El índice se pasa con --i (0, 1, 2…)
+   y el retardo se calcula automáticamente.
+   --------------------------------------------------------- */
+.reveal {
+  animation: fade-up 460ms var(--ease-quart) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+/* ---------------------------------------------------------
+   HERO GLOW
+   Halo de luz ambiente. Requiere padre relative con overflow
+   hidden y un gradiente radial inline como fondo.
+   --------------------------------------------------------- */
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(40px);
+  animation: float-slow 9s var(--ease-smooth) infinite alternate;
+}
+
+/* ---------------------------------------------------------
+   DOT LIVE
+   Punto de disponibilidad con pulso sutil. El color se
+   inyecta con la variable --dot-color.
+   --------------------------------------------------------- */
+.dot-live {
+  position: relative;
+}
+
+.dot-live::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  border: 1px solid var(--dot-color, currentColor);
+  opacity: 0.5;
+  animation: ping-soft 2.2s var(--ease-smooth) infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(14px, -18px, 0) scale(1.06);
+  }
+}
+
+@keyframes ping-soft {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------
+   MODO SHOWROOM (anochecer)
+   Clase en <html> cuando el interruptor apaga la luz. El
+   ambiente se oscurece con el overlay de LightSwitch; aquí
+   solo realzamos los elementos que deben contrastar.
+   --------------------------------------------------------- */
+html.showroom-dusk .hero-glow {
+  filter: blur(40px) saturate(1.4) brightness(1.15);
+}
+
+html.showroom-dusk .dot-live::after {
+  border-color: var(--dot-color, var(--color-accent));
+  opacity: 0.8;
+}
+
